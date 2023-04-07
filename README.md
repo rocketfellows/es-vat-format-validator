@@ -1,33 +1,8 @@
-# Country vat format validator template description
-
-## Implementation steps
-
-1. Create repository use template for name: <ISO-3166-standard-alpha2-code>-vat-format-validator
-2. Update composer.json **name** attribute: rocketfellows/<ISO-3166-standard-alpha2-code>-vat-format-validator
-3. Update composer.json with autoload and autoload-dev sections by pattern:
-```php
-   "autoload": {
-        "psr-4": {
-            "rocketfellows\\<ISO-3166-standard-alpha2-code>VatFormatValidator\\": "src/"
-        }
-   },
-   "autoload-dev": {
-        "psr-4": {
-            "rocketfellows\\<ISO-3166-standard-alpha2-code>VatFormatValidator\\tests\\": "tests/"
-        }
-   }
-```
-3. Run docker-deploy.sh
-4. Implement unit test in test/unit directory
-5. Implement direct validator
-
-# Templated readme
-
-# <Country> vat format validator
+# Spain vat format validator
 
 ![Code Coverage Badge](./badge.svg)
 
-This component provides <Country> vat number format validator.
+This component provides Spain vat number format validator.
 
 Implementation of interface **rocketfellows\CountryVatFormatValidatorInterface\CountryVatFormatValidatorInterface**
 
@@ -36,17 +11,21 @@ Depends on https://github.com/rocketfellows/country-vat-format-validator-interfa
 ## Installation
 
 ```shell
-composer require rocketfellows/<ISO-3166-standard-alpha2-code>-vat-format-validator
+composer require rocketfellows/es-vat-format-validator
 ```
 
 ## Usage example
 
-Valid <Country> vat number:
+Valid Spain vat number:
 
 ```php
-$validator = new <Country>VatFormatValidator();
-$validator->isValid('');
-$validator->isValid('');
+$validator = new ESVatFormatValidator();
+$validator->isValid('ESX12345678');
+$validator->isValid('ES12345678X');
+$validator->isValid('ESX1234567X');
+$validator->isValid('12345678X');
+$validator->isValid('X12345678');
+$validator->isValid('X1234567X');
 ```
 
 Returns:
@@ -54,17 +33,65 @@ Returns:
 ```shell
 true
 true
+true
+true
+true
+true
 ```
 
-Invalid <Country> vat number:
+Invalid Spain vat number:
 
 ```php
-$validator = new <Country>VatFormatValidator();
-$validator->isValid('');
+$validator = new ESVatFormatValidator();
+$validator->isValid('ES123456789');
+$validator->isValid('ES12345678XX');
+$validator->isValid('ES1234567X');
+$validator->isValid('ESX123456789');
+$validator->isValid('ESX1234567');
+$validator->isValid('ESXX1234567');
+$validator->isValid('ESX1234');
+$validator->isValid('ESX12345678X');
+$validator->isValid('ESX1234567XX');
+$validator->isValid('ESXX1234567X');
+$validator->isValid('DE12345678X');
+$validator->isValid('DEX12345678');
+$validator->isValid('DEX1234567X');
+$validator->isValid('12345678XX');
+$validator->isValid('123456789X');
+$validator->isValid('1234567X');
+$validator->isValid('X123456789');
+$validator->isValid('X1234567');
+$validator->isValid('X12345679X');
+$validator->isValid('X123456X');
+$validator->isValid('123456789');
+$validator->isValid('12345678');
+$validator->isValid('1234567890');
 $validator->isValid('');
 ```
 
 ```shell
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
+false
 false
 false
 ```
@@ -74,4 +101,3 @@ false
 Welcome to pull requests. If there is a major changes, first please open an issue for discussion.
 
 Please make sure to update tests as appropriate.
-
