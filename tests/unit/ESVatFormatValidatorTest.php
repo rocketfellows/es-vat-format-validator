@@ -3,6 +3,7 @@
 namespace rocketfellows\ESVatFormatValidator\tests\unit;
 
 use PHPUnit\Framework\TestCase;
+use rocketfellows\ESVatFormatValidator\ESVatFormatValidator;
 
 class ESVatFormatValidatorTest extends TestCase
 {
